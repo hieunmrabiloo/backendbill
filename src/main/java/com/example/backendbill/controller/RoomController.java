@@ -7,6 +7,7 @@ import com.example.backendbill.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class RoomController {
     @Autowired
@@ -49,6 +51,12 @@ public class RoomController {
     public List<Room> findByName(@PathVariable("name") String name) {
         List<Room> rooms = roomService.findByName(name);
         return rooms;
+    }
+
+    @GetMapping("room/{name}")
+    public Room findById(@PathVariable("name") String name) {
+        Room room = roomService.findRoomByName(name);
+        return room;
     }
 
 }

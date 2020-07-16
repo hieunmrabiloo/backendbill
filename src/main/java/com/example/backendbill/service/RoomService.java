@@ -14,5 +14,5 @@ public interface RoomService {
 
     List<Room> findByName(String name);
 
-    Room findById(Integer id);
+    Room findRoomByName(String name);
 }

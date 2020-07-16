@@ -34,14 +34,6 @@ public class BillController {
         return _bill;
     }
 
-//    @GetMapping("/bill/month/{monthBill}")
-//    public int getBillByMonth(@PathVariable("monthBill") Integer monthBill){
-//        System.out.println("Getting bill...");
-//        Bill bill = billService.findByMonth(monthBill);
-//        if(bill == null) return 0;
-//        return bill.getMonthBill();
-//    }
-
     @GetMapping("/bill/month/{month}/{roomId}")
     public int getMonthByMonthAndRoomId(@PathVariable("month") Integer month, @PathVariable("roomId") Integer roomId){
         System.out.println("Getting bill... by id");

@@ -15,4 +15,5 @@ public interface BillService {
     void delete(Integer id);
 
     Bill findBillByMonthAndRoomId(Integer month, Integer roomId);
+
 }

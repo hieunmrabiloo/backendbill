@@ -12,8 +12,6 @@ import java.util.Optional;
 public interface BillRepository extends PagingAndSortingRepository<Bill, Integer> {
     List<Bill> findBillsByRoomId(Integer roomId);
 
-    Bill findBillByMonthBill(Integer month);
-
     Optional<Bill> findById(Integer id);
 
     Bill findBillByMonthBillAndRoomId(Integer month ,Integer roomId);

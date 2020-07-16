@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081")
-@PreAuthorize("isAuthenticated()")
 @RestController
 public class RoomController {
     @Autowired
@@ -20,6 +19,8 @@ public class RoomController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @PreAuthorize("isAuthenticated()")
 
     @GetMapping("/rooms")
     public List<Room> getAllRooms() {

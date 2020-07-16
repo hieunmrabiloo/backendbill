@@ -1,12 +1,15 @@
 package com.example.backendbill.controller;
 
 import com.example.backendbill.entity.Bill;
+import com.example.backendbill.entity.Room;
 import com.example.backendbill.service.BillService;
+import com.example.backendbill.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,8 @@ public class BillController {
     @Autowired
     private BillService billService;
 
+    @Autowired
+    private RoomService roomService;
 
     @GetMapping("/bill/{roomId}")
     public List<Bill> getBills(@PathVariable("roomId") Integer roomId){
@@ -101,5 +106,15 @@ public class BillController {
         billService.delete(id);
 
         return new ResponseEntity<>("Bill has been deleted!", HttpStatus.OK);
+    }
+
+    @GetMapping("/user/rooms")
+    public List<Room> getAllRooms() {
+        System.out.println("Get all Rooms...");
+
+        List<Room> rooms = new ArrayList<>();
+        roomService.findAll().forEach(rooms::add);
+
+        return rooms;
     }
 }

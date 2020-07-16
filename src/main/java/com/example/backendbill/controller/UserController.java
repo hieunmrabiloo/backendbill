@@ -58,8 +58,6 @@ public class UserController {
 
     @PutMapping(value = "/register")
     public ResponseEntity<?> registerUser(@RequestBody UserForm userForm) {
-        System.out.println(userForm.getUsername());
-        System.out.println(userForm.getRoom().getId());
         User user = new User();
         user.setUsername(userForm.getUsername());
         user.setPassword(passwordEncoder.encode(userForm.getPassword()));

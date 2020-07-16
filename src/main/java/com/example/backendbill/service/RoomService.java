@@ -15,4 +15,6 @@ public interface RoomService {
     List<Room> findByName(String name);
 
     Room findRoomByName(String name);
+
+    Room findRoomById(Integer id);
 }

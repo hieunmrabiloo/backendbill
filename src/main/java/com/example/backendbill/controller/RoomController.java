@@ -1,18 +1,15 @@
 package com.example.backendbill.controller;
 
 import com.example.backendbill.entity.Room;
-import com.example.backendbill.repository.BillRepository;
-import com.example.backendbill.repository.RoomRepository;
+import com.example.backendbill.entity.User;
+import com.example.backendbill.repository.UserRepository;
 import com.example.backendbill.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @PreAuthorize("isAuthenticated()")
@@ -20,6 +17,9 @@ import java.util.Optional;
 public class RoomController {
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/rooms")
     public List<Room> getAllRooms() {
@@ -38,15 +38,6 @@ public class RoomController {
         return _room;
     }
 
-    @DeleteMapping("/room/{id}")
-    public ResponseEntity<String> deleteRoom(@PathVariable("id") int id) {
-        System.out.println("Delete Room with ID = " + id + "...");
-
-        roomService.delete(id);
-
-        return new ResponseEntity<>("Room has been deleted!", HttpStatus.OK);
-    }
-
     @GetMapping("room/search/{name}")
     public List<Room> findByName(@PathVariable("name") String name) {
         List<Room> rooms = roomService.findByName(name);
@@ -54,9 +45,22 @@ public class RoomController {
     }
 
     @GetMapping("room/{name}")
-    public Room findById(@PathVariable("name") String name) {
+    public Room findRoomByName(@PathVariable("name") String name) {
         Room room = roomService.findRoomByName(name);
         return room;
+    }
+
+    @GetMapping("room/user/{id}")
+    public String findRoomById(@PathVariable("id") int id){
+        Room room = roomService.findRoomById(id);
+        return room.getName();
+    }
+
+    @GetMapping(value = "/user/{username}")
+    public int getRoomIdByUsername(@PathVariable(name = "username") String name){
+        User user = userRepository.findUserByUsername(name);
+        if(user == null) return 0;
+        return user.getRoom().getId();
     }
 
 }

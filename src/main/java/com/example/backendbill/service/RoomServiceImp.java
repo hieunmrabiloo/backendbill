@@ -38,4 +38,9 @@ public class RoomServiceImp implements RoomService{
         return roomRepository.findRoomByName(name);
     }
 
+    @Override
+    public Room findRoomById(Integer id) {
+        return roomRepository.findRoomById(id);
+    }
+
 }

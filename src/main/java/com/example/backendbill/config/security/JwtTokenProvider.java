@@ -76,9 +76,13 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader(JwtConfiguration.JWT_HEADER_KEY);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConfiguration.TOKEN_PREFIX)) {
-            return bearerToken.substring(7, bearerToken.length());
+        try{
+            String bearerToken = request.getHeader(JwtConfiguration.JWT_HEADER_KEY);
+            if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConfiguration.TOKEN_PREFIX)) {
+                return bearerToken.substring(7, bearerToken.length());
+            }
+        }catch (StringIndexOutOfBoundsException ex){
+            LOGGER.error("String index out of range");
         }
         return null;
     }

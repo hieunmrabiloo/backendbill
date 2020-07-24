@@ -64,4 +64,10 @@ public class RoomController {
         return user.getRoom().getId();
     }
 
+    @GetMapping("room/get/{id}")
+    public Room getRoomById(@PathVariable("id") int id){
+        Room room = roomService.findRoomById(id);
+        System.out.println("room...................");
+        return room;
+    }
 }

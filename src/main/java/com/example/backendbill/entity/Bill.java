@@ -22,35 +22,39 @@ public class Bill {
     @Column(name = "month")
     private int monthBill;
 
-    @Column(name = "roomRates")
+    @Column(name = "room_rates")
     private int roomRates;
 
-    @Column(name = "elecNum")
+    @Column(name = "elec_num")
     private int elecNum;
 
-    @Column(name = "elecPrice")
+    @Column(name = "elec_price")
     private int elecPrice;
 
-    @Column(name = "waterNum")
+    @Column(name = "water_num")
     private int waterNum;
 
-    @Column(name = "waterPrice")
+    @Column(name = "water_price")
     private int waterPrice;
 
-    @Column(name = "totalPrice")
+    @Column(name = "other")
+    private int other;
+
+    @Column(name = "total_price")
     private int totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
-    public Bill(int monthBill, int roomRates, int elecNum, int elecPrice, int waterNum, int waterPrice, int totalPrice, Room room) {
+    public Bill(int monthBill, int roomRates, int elecNum, int elecPrice, int waterNum, int waterPrice,int other, int totalPrice, Room room) {
         this.monthBill = monthBill;
         this.roomRates = roomRates;
         this.elecNum = elecNum;
         this.elecPrice = elecPrice;
         this.waterNum = waterNum;
         this.waterPrice = waterPrice;
+        this.other = other;
         this.totalPrice = totalPrice;
         this.room = room;
     }

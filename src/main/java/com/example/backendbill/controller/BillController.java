@@ -33,7 +33,7 @@ public class BillController {
         System.out.println("Saving bill ...");
         Bill _bill = billService.save(new Bill(bill.getMonthBill(),
                 bill.getRoomRates(),bill.getElecNum(),bill.getElecPrice(),
-                bill.getWaterNum(),bill.getWaterPrice(),bill.getTotalPrice(),
+                bill.getWaterNum(),bill.getWaterPrice(),bill.getOther(),bill.getTotalPrice(),
                 bill.getRoom()));
         return _bill;
     }
@@ -92,6 +92,7 @@ public class BillController {
             _bill.setElecPrice(bill.getElecPrice());
             _bill.setWaterNum(bill.getWaterNum());
             _bill.setWaterPrice(bill.getWaterPrice());
+            _bill.setOther(bill.getOther());
             _bill.setTotalPrice(bill.getTotalPrice());
             _bill.setRoom(bill.getRoom());
             return new ResponseEntity<>(billService.save(_bill), HttpStatus.OK);

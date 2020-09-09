@@ -1,7 +1,6 @@
 package com.example.backendbill.repository;
 
 import com.example.backendbill.entity.Bill;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
